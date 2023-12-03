@@ -18,11 +18,12 @@ DB_USER = 'jinit009'
 DB_PASSWORD = 'bigdataDocdb'
 
 # Connect to AWS DocumentDB
-client = MongoClient(f"mongodb://{DB_USER}:{DB_PASSWORD}@{DB_CLUSTER_ENDPOINT}:{DB_PORT}/{DB_NAME}?ssl=true&ssl_cert_reqs=CERT_NONE")
+client = MongoClient(f"mongodb://{DB_USER}:{DB_PASSWORD}@{DB_CLUSTER_ENDPOINT}:{DB_PORT}/?tls=true&tlsCAFile=global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false")
+
 
 # Select the database and collection
 db = client[DB_NAME]
-collection = db['your_collection_name']
+collection = db['products']
 
 # Function to measure time for CRUD operations
 def measure_time_for_crud_operations():

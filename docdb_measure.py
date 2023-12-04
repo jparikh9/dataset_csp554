@@ -30,7 +30,7 @@ def measure_read(pid):
   end_time = time.time()
   read_time = round((end_time - start_time)*1000,2)
   print(f"Read operation took {read_time} ms")
-  pprint(read_document)
+  ppprint.pprint(read_document)
 
 def measure_write(doc):
   count = collection.count_documents({})

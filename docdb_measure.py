@@ -9,6 +9,7 @@ Original file is located at
 
 from pymongo import MongoClient
 import time
+import pprint
 
 # details of documentdb database for connection string
 DB_CLUSTER_ENDPOINT = 'docdb-2023-12-02-21-57-48.cluster-cwxr4ybijym6.us-east-2.docdb.amazonaws.com'
@@ -29,7 +30,7 @@ def measure_read(pid):
   end_time = time.time()
   read_time = round((end_time - start_time)*1000,2)
   print(f"Read operation took {read_time} ms")
-  print(read_document)
+  pprint(read_document)
 
 def measure_write(doc):
   count = collection.count_documents({})

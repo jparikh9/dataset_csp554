@@ -12,7 +12,7 @@ import time
 import pprint
 
 # details of documentdb database for connection string
-DB_CLUSTER_ENDPOINT = 'docdb-2023-12-02-21-57-48.cluster-cwxr4ybijym6.us-east-2.docdb.amazonaws.com'
+DB_CLUSTER_ENDPOINT = 'docdb-2023-12-05-21-33-01.cluster-cwxr4ybijym6.us-east-2.docdb.amazonaws.com'
 DB_PORT = 27017
 DB_NAME = 'myntraProductsDB'
 DB_USER = 'jinit009'

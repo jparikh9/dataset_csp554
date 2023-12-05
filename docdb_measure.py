@@ -26,7 +26,6 @@ collection = database['products']
 
 def measure_read(pid):
   start_time = time.time()
-  # Perform Read operation
   read_document = collection.find_one({"ProductID": pid})
   end_time = time.time()
   read_time = round((end_time - start_time)*1000,2)
@@ -37,7 +36,6 @@ def measure_write(doc):
   count = collection.count_documents({})
   print("Count before insert:",count)
   start_time = time.time()
-  # Perform Create operation
   new_document = doc
   collection.insert_one(new_document)
   end_time = time.time()
@@ -50,7 +48,6 @@ def measure_delete(pid):
   count = collection.count_documents({})
   print("Count before delete:",count)
   start_time = time.time()
-  # Perform Delete operation
   delete_query = {"ProductID": pid}
   collection.delete_one(delete_query)
   end_time = time.time()
@@ -60,6 +57,7 @@ def measure_delete(pid):
   print("Count after delete:",count)
 
 def measure_update(pid, key_value):
+  print("Before update:")
   measure_read(pid)
   start_time = time.time()
   update_query = {"ProductID": pid}

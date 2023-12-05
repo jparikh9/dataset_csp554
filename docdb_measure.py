@@ -12,15 +12,16 @@ import time
 import pprint
 
 # details of documentdb database for connection string
-DB_CLUSTER_ENDPOINT = 'docdb-2023-12-05-21-33-01.cluster-cwxr4ybijym6.us-east-2.docdb.amazonaws.com'
-DB_PORT = 27017
-DB_NAME = 'myntraProductsDB'
-DB_USER = 'jinit009'
-DB_PASSWORD = 'bigdataDocdb'
+ENDPOINT = 'docdb-2023-12-05-21-33-01.cluster-cwxr4ybijym6.us-east-2.docdb.amazonaws.com'
+PORT = 27017
+
+USER = 'jinit009'
+PASSWORD = 'bigdataDocdb'
+NAME = 'myntraProductsDB'
 
 # Connecting to AWS DocumentDB
-client = MongoClient(f"mongodb://{DB_USER}:{DB_PASSWORD}@{DB_CLUSTER_ENDPOINT}:{DB_PORT}/?tls=true&tlsCAFile=global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false")
-database = client[DB_NAME]
+client = MongoClient(f"mongodb://{USER}:{PASSWORD}@{ENDPOINT}:{PORT}/?tls=true&tlsCAFile=global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false")
+database = client[NAME]
 collection = database['products']
 
 def measure_read(pid):
@@ -59,6 +60,7 @@ def measure_delete(pid):
   print("Count after delete:",count)
 
 def measure_update(pid, key_value):
+  measure_read(pid)
   start_time = time.time()
   update_query = {"ProductID": pid}
   update_data = {"$set": key_value}

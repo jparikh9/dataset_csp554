@@ -10,6 +10,7 @@ Original file is located at
 from pymongo import MongoClient
 import time
 import pprint
+import threading
 
 # details of documentdb database for connection string
 ENDPOINT = 'docdb-2023-12-05-21-33-01.cluster-cwxr4ybijym6.us-east-2.docdb.amazonaws.com'
@@ -72,6 +73,23 @@ def measure_update(pid, key_value):
   print(f"Update operation took {update_time} ms")
   measure_read(pid)
 
+def perform_multiple_reads(nthreads,pid):
+  start_time = time.time()
+  threads = []
+
+  for i in range(nthreads):
+      thread = threading.Thread(target=measure_read, args=(pid))
+      thread.start()
+      threads.append(thread)
+
+  for thread in threads:
+      thread.join()
+
+end_time = time.time()
+total_time = round((end_time - start_time)*1000,2)
+print(f"Total time for {nthreads} to perform simultaneous read operations: {total_time} ms")
+
+
 # Measure time for CRUD operations
 
 print("\n")
@@ -86,4 +104,5 @@ time.sleep(5)
 print("\n")
 measure_delete(999999)
 
+print("\nNow lets try to perform read with 30 user (threads) simultaneously: ")
 client.close()

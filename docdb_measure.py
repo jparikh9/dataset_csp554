@@ -105,4 +105,5 @@ print("\n")
 measure_delete(999999)
 
 print("\nNow lets try to perform read with 30 user (threads) simultaneously: ")
+perform_multiple_reads(30, 10013641)
 client.close()

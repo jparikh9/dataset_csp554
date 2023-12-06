@@ -85,9 +85,9 @@ def perform_multiple_reads(nthreads,pid):
   for thread in threads:
       thread.join()
 
-end_time = time.time()
-total_time = round((end_time - start_time)*1000,2)
-print(f"Total time for {nthreads} to perform simultaneous read operations: {total_time} ms")
+  end_time = time.time()
+  total_time = round((end_time - start_time)*1000,2)
+  print(f"Total time for {nthreads} to perform simultaneous read operations: {total_time} ms")
 
 
 # Measure time for CRUD operations
@@ -105,5 +105,4 @@ print("\n")
 measure_delete(999999)
 
 print("\nNow lets try to perform read with 30 user (threads) simultaneously: ")
-perform_multiple_reads(30,10138615)
 client.close()

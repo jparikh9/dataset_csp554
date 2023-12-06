@@ -78,7 +78,7 @@ def perform_multiple_reads(nthreads,pid):
   threads = []
 
   for i in range(nthreads):
-      thread = threading.Thread(target=measure_read, args=(pid))
+      thread = threading.Thread(target=measure_read, args=(pid,))
       thread.start()
       threads.append(thread)
 

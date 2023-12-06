@@ -11,6 +11,7 @@ from pymongo import MongoClient
 import time
 import pprint
 import threading
+import sys
 
 # details of documentdb database for connection string
 ENDPOINT = 'docdb-2023-12-05-21-33-01.cluster-cwxr4ybijym6.us-east-2.docdb.amazonaws.com'
@@ -104,6 +105,6 @@ time.sleep(5)
 print("\n")
 measure_delete(999999)
 
-print("\nNow lets try to perform read with 30 user (threads) simultaneously: ")
-perform_multiple_reads(30, 10013641)
+print("\nNow lets try to perform read with "+str(sys.argv[1]) + "  users (i.e. threads) simultaneously: ")
+perform_multiple_reads(sys.argv[1], 10013641)
 client.close()

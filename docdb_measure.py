@@ -106,5 +106,5 @@ print("\n")
 measure_delete(999999)
 
 print("\nNow lets try to perform read with "+str(sys.argv[1]) + "  users (i.e. threads) simultaneously: ")
-perform_multiple_reads(sys.argv[1], 10013641)
+perform_multiple_reads(int(sys.argv[1]), 10013641)
 client.close()
